@@ -6,6 +6,7 @@ import (
 	"myapi/types"
 	"myapi/utils"
 	"net/http"
+
 	"github.com/gorilla/mux"
 	"github.com/sikozonpc/ecom/configs"
 )
@@ -21,8 +22,18 @@ func NewHandler(store types.IUserStore) *Handler {
 }
 
 func (h *Handler) RegisterRoutes(router *mux.Router) {
+	router.HandleFunc("/", h.home).Methods("GET")
 	router.HandleFunc("/login", h.login).Methods("POST")
 	router.HandleFunc("/register", h.register).Methods("POST")
+
+
+
+}
+
+
+func (h *Handler) home( response http.ResponseWriter, request *http.Request){
+	response.Write([]byte("Welcome to the home pagess"))
+	
 }
 
 func (h *Handler) login(response http.ResponseWriter, request *http.Request) {
@@ -89,8 +100,7 @@ func (h *Handler) register(writer http.ResponseWriter, request *http.Request) {
 	}
 	// if the user is not registered then register the user
 	err = h.CreateUser(types.User{
-		FirstName: payload.FirstName,
-		LastName:  payload.LastName,
+		Name: payload.Name,
 		Email:     payload.Email,
 		Password:  hashedPassword,
 	})

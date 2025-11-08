@@ -7,7 +7,6 @@ import (
 	"myapi/service/user"
 	"myapi/utils"
 	"net/http"
-
 	"github.com/gorilla/mux"
 )
 
@@ -36,7 +35,7 @@ func (s *ApiServer) Run() error{
 	productHandler.RegisterRoutes(subrouter)
 
 
-	log.Println("Listening on  ",s.addr)
+	log.Printf("Listening on http://localhost%s",s.addr)
 	utils.PrintRoutes(router)
 	return  http.ListenAndServe(s.addr,router);
 }

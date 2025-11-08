@@ -37,7 +37,7 @@ func (s *Store) CreateUser(user types.User) error {
 		return fmt.Errorf("user already exist")
 	}
 
-	_, err := s.db.Exec("INSERT INTO users (firstname,lastname,email,password) VALUES (?,?,?,?)", user.FirstName, user.LastName, user.Email, user.Password)
+	_, err := s.db.Exec("INSERT INTO users (name,email,password) VALUES (?,?,?)", user.Name, user.Email, user.Password)
 	if err != nil {
 		return err
 	}
@@ -63,7 +63,7 @@ func (s *Store) GetUserById(id int) (*types.User, error) {
 func ScanUserIntoRows(rows *sql.Rows) (*types.User, error) {
 	u := new(types.User)
 	// Table columns: id, firstname, lastname, email, password, created_at
-	err := rows.Scan(&u.Id, &u.FirstName, &u.LastName, &u.Email, &u.Password, &u.CreatedAt)
+	err := rows.Scan(&u.Id, &u.Name,  &u.Email, &u.Password, &u.CreatedAt)
 	if err != nil {
 		return nil, err
 	}

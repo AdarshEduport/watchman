@@ -14,8 +14,7 @@ type IProductStore interface {
 
 
 type AuthUserPayload struct{
-	FirstName string `json:"firstName" validate:"required"` 
-	LastName string `json:"lastName" validate:"required"`
+	Name string `json:"name" validate:"required"` 
 	Email string `json:"email" validate:"required,email"`
 	Password string `json:"password" validate:"required,min=6,max=20"`
 	
@@ -23,8 +22,7 @@ type AuthUserPayload struct{
 
 type User struct{
 	Id int `json:"Id"`
-	FirstName string `json:"firstName"`
-	LastName string `json:"lastName"`
+	Name string `json:"name"`
 	Email string `json:"email"`
 	Password string `json:"password"`
 	CreatedAt time.Time `json:"createdAt"`
