@@ -15,3 +15,6 @@ migrate-up:
 
 migrate-down:
 	@go run cmd/migrate/main.go down
+
+
+# sudo kill -9 `sudo lsof -t -i:8080`

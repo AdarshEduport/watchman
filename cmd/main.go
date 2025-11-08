@@ -7,7 +7,6 @@ import (
 	"myapi/cmd/api"
 	"myapi/config"
 	"myapi/db"
-
 	"github.com/go-sql-driver/mysql"
 )
 

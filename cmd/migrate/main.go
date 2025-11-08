@@ -28,6 +28,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+   log.Printf("Connecting to MySQL as %s@%s/%s", configs.Envs.DBUser, configs.Envs.DBAddress, configs.Envs.DBName)
 
 	driver, err := mysqlMigrate.WithInstance(db, &mysqlMigrate.Config{})
 	if err != nil {
